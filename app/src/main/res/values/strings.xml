@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Star Wars Films</string>
+    <string name="crew_name">Crew name</string>
+    <string name="role">role</string>
+    <string name="film">Film</string>
+    <string name="genre">Genre</string>
+    <string name="time">Time</string>
+    <string name="star_movie">Star Movie</string>
+    <string name="cast_crew"><![CDATA[Cast & Crew]]></string>
+    <string name="synopsis">Synopsis</string>
+</resources>
