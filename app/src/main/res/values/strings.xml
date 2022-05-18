@@ -8,4 +8,6 @@
     <string name="star_movie">Star Movie</string>
     <string name="cast_crew"><![CDATA[Cast & Crew]]></string>
     <string name="synopsis">Synopsis</string>
+    <string name="description">Description</string>
+    <string name="view_all">View All</string>
 </resources>
