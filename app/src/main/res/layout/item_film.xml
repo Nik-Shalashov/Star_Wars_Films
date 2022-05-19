@@ -54,10 +54,10 @@
 
         <TextView
             style="@style/SecondaryText"
-            android:id="@+id/tv_duration"
+            android:id="@+id/tv_rate"
             android:layout_marginStart="6dp"
             android:textSize="12sp"
-            android:hint="@string/time"
+            android:hint="@string/rate"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_point"
             app:layout_constraintTop_toBottomOf="@+id/tv_film_name" />
