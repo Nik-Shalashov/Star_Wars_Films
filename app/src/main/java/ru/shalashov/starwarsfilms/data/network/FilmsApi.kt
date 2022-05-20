@@ -18,14 +18,14 @@ interface FilmsApi {
 
     @GET("movie/{id}")
     suspend fun getFilmDetails(
-        @Path("id") filmId: String,
+        @Path("id") filmId: Int,
         @Query("api_key") api_key: String,
         @Query("language") language: String
     ): Response<Details>
 
     @GET("movie/{id}/credits")
     suspend fun getCredits(
-        @Path("id") filmId: String,
+        @Path("id") filmId: Int,
         @Query("api_key") api_key: String,
         @Query("language") language: String
     ): Response<Credits>

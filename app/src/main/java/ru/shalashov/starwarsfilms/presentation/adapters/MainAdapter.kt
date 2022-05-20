@@ -1,35 +1,34 @@
 package ru.shalashov.starwarsfilms.presentation.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import ru.shalashov.starwarsfilms.R
-import ru.shalashov.starwarsfilms.domain.entities.PopularFilms
+import ru.shalashov.starwarsfilms.databinding.ItemFilmBinding
 import ru.shalashov.starwarsfilms.domain.entities.Results
-import ru.shalashov.starwarsfilms.presentation.fragments.MainFragment
 
-class MainAdapter(private var onItemViewClickListener: MainFragment.OnItemViewClickListener?) :
-    RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+class MainAdapter: RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
-    private lateinit var filmsList: List<Results>
+    private var filmsList: List<Results> = listOf()
+    var onItemViewClickListener: ((Results) -> Unit)? = null
 
-    fun setFilm(data: PopularFilms) {
-        filmsList = data.results
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFilm(data: List<Results>) {
+        filmsList = data
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        return MainViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_film, parent, false) as View
-        )
+        val binding = ItemFilmBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MainViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         holder.bind(filmsList[position])
+        holder.itemView.setOnClickListener {
+            onItemViewClickListener?.invoke(filmsList[position])
+        }
     }
 
     override fun getItemCount(): Int = filmsList.size
@@ -38,18 +37,15 @@ class MainAdapter(private var onItemViewClickListener: MainFragment.OnItemViewCl
         onItemViewClickListener = null
     }
 
-    inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MainViewHolder(private val binding: ItemFilmBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(film: Results) {
-            itemView.apply {
-                findViewById<ImageView>(R.id.iv_poster).load(film.poster_path)
-                findViewById<TextView>(R.id.tv_film_name).text = film.title
-                findViewById<TextView>(R.id.tv_rate).text = film.vote_average.toString()
-                setOnClickListener {
-                    onItemViewClickListener?.onItemViewClick(film)
-                }
-            }
+            binding.ivPoster.load("https://image.tmdb.org/t/p/w500${film.poster_path}")
+            binding.tvFilmName.text = film.title
+            binding.tvReleaseDate.text = film.release_date
+            binding.tvRate.text = film.vote_average.toString()
         }
     }
-
-
 }
+
+

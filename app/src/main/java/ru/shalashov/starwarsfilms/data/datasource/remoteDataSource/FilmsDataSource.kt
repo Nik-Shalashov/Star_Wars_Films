@@ -8,6 +8,6 @@ import ru.shalashov.starwarsfilms.domain.entities.PopularFilms
 interface FilmsDataSource {
 
     suspend fun getFilmsList(): Response<PopularFilms>
-    suspend fun getFilmsDetails(id: String): Response<Details>
-    suspend fun getCrews(id: String): Response<Credits>
+    suspend fun getFilmsDetails(id: Int): Response<Details>
+    suspend fun getCrews(id: Int): Response<Credits>
 }

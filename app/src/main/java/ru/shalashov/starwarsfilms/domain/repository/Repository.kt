@@ -8,6 +8,6 @@ import ru.shalashov.starwarsfilms.presentation.appState.AppState
 interface Repository {
 
     suspend fun getFilmsList(): AppState<PopularFilms>
-    suspend fun getFilmsDetails(id: String): AppState<Details>
-    suspend fun getCrews(id: String): AppState<Credits>
+    suspend fun getFilmsDetails(id: Int): AppState<Details>
+    suspend fun getCrews(id: Int): AppState<Credits>
 }

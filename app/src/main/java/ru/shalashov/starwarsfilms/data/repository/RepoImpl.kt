@@ -19,9 +19,9 @@ class RepoImpl @Inject constructor(
 ): Repository {
     override suspend fun getFilmsList(): AppState<PopularFilms> = checkResponse(dataSource.getFilmsList())
 
-    override suspend fun getFilmsDetails(id: String): AppState<Details> = checkResponse(dataSource.getFilmsDetails(id))
+    override suspend fun getFilmsDetails(id: Int): AppState<Details> = checkResponse(dataSource.getFilmsDetails(id))
 
-    override suspend fun getCrews(id: String): AppState<Credits> = checkResponse(dataSource.getCrews(id))
+    override suspend fun getCrews(id: Int): AppState<Credits> = checkResponse(dataSource.getCrews(id))
 
     private fun <T> checkResponse(response: Response<T>): AppState<T> {
         return if (response.isSuccessful) AppState.Success(response.body()!!)
