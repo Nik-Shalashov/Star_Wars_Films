@@ -15,7 +15,7 @@ class MainAdapter: RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setFilm(data: List<Results>) {
-        filmsList = data
+        filmsList = data.sortedBy { it.title }
         notifyDataSetChanged()
     }
 
