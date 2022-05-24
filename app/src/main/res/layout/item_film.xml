@@ -38,7 +38,7 @@
             android:layout_marginStart="1dp"
             android:layout_marginBottom="10dp"
             android:textSize="12sp"
-            android:hint="@string/date"
+            android:hint="@string/genre"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_film_name" />
 
@@ -49,18 +49,20 @@
             android:layout_marginStart="6dp"
             android:src="@drawable/ellipse"
             app:layout_constraintBottom_toBottomOf="@id/tv_release_date"
+            app:layout_constraintTop_toTopOf="@+id/tv_release_date"
             app:layout_constraintStart_toEndOf="@+id/tv_release_date"
-            app:layout_constraintTop_toTopOf="@+id/tv_release_date" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_film_name" />
 
         <TextView
             style="@style/SecondaryText"
             android:id="@+id/tv_rate"
             android:layout_marginStart="6dp"
             android:textSize="12sp"
-            android:hint="@string/rate"
+            android:hint="@string/time"
             app:layout_constraintBottom_toBottomOf="@id/tv_release_date"
+            app:layout_constraintTop_toTopOf="@+id/tv_release_date"
             app:layout_constraintStart_toEndOf="@+id/iv_point"
-            app:layout_constraintTop_toTopOf="@+id/tv_release_date" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_film_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

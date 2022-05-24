@@ -14,6 +14,7 @@ import ru.shalashov.starwarsfilms.databinding.FragmentDetailsBinding
 import ru.shalashov.starwarsfilms.databinding.FragmentMainBinding
 import ru.shalashov.starwarsfilms.domain.entities.*
 import ru.shalashov.starwarsfilms.presentation.adapters.CreditsAdapter
+import ru.shalashov.starwarsfilms.presentation.adapters.MainAdapter
 import ru.shalashov.starwarsfilms.presentation.appState.AppState
 import ru.shalashov.starwarsfilms.presentation.viewmodels.DetailsViewModel
 
@@ -23,7 +24,9 @@ class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: DetailsViewModel by viewModels()
-    private lateinit var adapter: CreditsAdapter
+    private val adapter: CreditsAdapter by lazy {
+        CreditsAdapter()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +44,7 @@ class DetailsFragment : Fragment() {
         val filmID = requireArguments().getParcelable<Results>(BUNDLE_EXTRA)!!.id
         viewModel.getDetails(filmID)
         viewModel.getCredits(filmID)
+        binding.rvCreditsList.adapter = adapter
         binding.ibBackToFilms.setOnClickListener {
             activity?.supportFragmentManager?.apply {
                 beginTransaction()
@@ -85,8 +89,10 @@ class DetailsFragment : Fragment() {
             is AppState.Success -> {
                 binding.loadingLayout.visibility = View.GONE
                 val credits = appState.content
-                adapter = CreditsAdapter(credits)
-                binding.rvCreditsList.adapter = adapter
+                val creditsList: MutableList<Any> = mutableListOf()
+                creditsList.addAll(credits.crew)
+                creditsList.addAll(credits.cast)
+                adapter.setCredits(creditsList)
             }
             is AppState.Loading -> {
                 binding.loadingLayout.visibility = View.VISIBLE

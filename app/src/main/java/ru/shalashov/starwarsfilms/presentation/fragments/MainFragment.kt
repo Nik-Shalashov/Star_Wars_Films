@@ -41,7 +41,7 @@ class MainFragment : Fragment() {
         viewModel.getFilmsList()
         adapter.onItemViewClickListener = {
             parentFragmentManager.beginTransaction()
-                .replace(R.id.container, DetailsFragment.newInstance(it))
+                .add(R.id.container, DetailsFragment.newInstance(it))
                 .addToBackStack(null)
                 .commit()
         }

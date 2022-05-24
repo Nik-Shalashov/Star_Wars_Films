@@ -7,29 +7,20 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import ru.shalashov.starwarsfilms.databinding.ItemCrewBinding
 import ru.shalashov.starwarsfilms.domain.entities.Cast
-import ru.shalashov.starwarsfilms.domain.entities.Credits
 import ru.shalashov.starwarsfilms.domain.entities.Crew
-import ru.shalashov.starwarsfilms.domain.entities.Results
 
-class CreditsAdapter(
-    private var credits: Credits
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CreditsAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private companion object {
         const val CAST_VIEW_TYPE = 0
         const val CREW_VIEW_TYPE = 1
     }
 
-
-/*    //var credits: Credits
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }*/
+    private var credits: MutableList<Any> = mutableListOf()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setCredits(data: Credits) {
-        credits = data
+    fun setCredits(creditsData: MutableList<Any>) {
+        credits = creditsData
         notifyDataSetChanged()
     }
 
@@ -48,20 +39,20 @@ class CreditsAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is CastViewHolder -> holder.bind(credits.cast[position] as Cast)
-            is CrewViewHolder -> holder.bind(credits.crew[position] as Crew)
+            is CastViewHolder -> holder.bind(credits[position] as Cast)
+            is CrewViewHolder -> holder.bind(credits[position] as Crew)
         }
     }
 
     override fun getItemCount(): Int =
-        credits.cast.size + credits.crew.size
+        credits.size
 
     override fun getItemViewType(position: Int): Int =
         when {
-            credits.crew[position].javaClass.isInstance(Crew::class) -> {
+            credits[position].javaClass.isInstance(Crew::class) -> {
                 CREW_VIEW_TYPE
             }
-            credits.cast[position].javaClass.isInstance(Cast::class) -> {
+            credits[position].javaClass.isInstance(Cast::class) -> {
                 CAST_VIEW_TYPE
             }
             else -> {
