@@ -10,5 +10,6 @@ data class FilmsModel(
     val genre_ids: List<Int>,
     val title: String,
     val vote_average: Float,
-    val poster_path: String?
+    val poster_path: String?,
+    val release_date: String
 )
