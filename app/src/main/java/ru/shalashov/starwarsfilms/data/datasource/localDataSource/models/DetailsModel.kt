@@ -1,4 +1,4 @@
-package ru.shalashov.starwarsfilms.data.model
+package ru.shalashov.starwarsfilms.data.datasource.localDataSource.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

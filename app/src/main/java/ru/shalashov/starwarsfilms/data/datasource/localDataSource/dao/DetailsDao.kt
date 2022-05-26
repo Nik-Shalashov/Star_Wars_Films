@@ -1,7 +1,7 @@
 package ru.shalashov.starwarsfilms.data.datasource.localDataSource.dao
 
 import androidx.room.*
-import ru.shalashov.starwarsfilms.data.model.DetailsModel
+import ru.shalashov.starwarsfilms.data.datasource.localDataSource.models.DetailsModel
 
 @Dao
 interface DetailsDao {

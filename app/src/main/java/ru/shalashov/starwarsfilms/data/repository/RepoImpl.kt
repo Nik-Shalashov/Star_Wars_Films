@@ -3,6 +3,9 @@ package ru.shalashov.starwarsfilms.data.repository
 import dagger.hilt.components.SingletonComponent
 import it.czerwinski.android.hilt.annotations.BoundTo
 import retrofit2.Response
+import ru.shalashov.starwarsfilms.data.datasource.localDataSource.database.CreditsDb
+import ru.shalashov.starwarsfilms.data.datasource.localDataSource.database.DetailsDb
+import ru.shalashov.starwarsfilms.data.datasource.localDataSource.database.FilmsDb
 import ru.shalashov.starwarsfilms.data.datasource.remoteDataSource.FilmsDataSource
 import ru.shalashov.starwarsfilms.domain.entities.Credits
 import ru.shalashov.starwarsfilms.domain.entities.Details
@@ -15,7 +18,10 @@ import javax.inject.Singleton
 @Singleton
 @BoundTo(Repository::class, SingletonComponent::class)
 class RepoImpl @Inject constructor(
-    private val dataSource: FilmsDataSource
+    private val dataSource: FilmsDataSource,
+    private val filmDb: FilmsDb,
+    private val detailsDb: DetailsDb,
+    private val creditsDb: CreditsDb
 ): Repository {
     override suspend fun getFilmsList(): AppState<PopularFilms> = checkResponse(dataSource.getFilmsList())
 
