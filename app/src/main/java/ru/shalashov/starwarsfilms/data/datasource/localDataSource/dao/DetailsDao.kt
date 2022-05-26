@@ -7,8 +7,8 @@ import ru.shalashov.starwarsfilms.data.datasource.localDataSource.models.Details
 interface DetailsDao {
 
     @Query("SELECT * FROM details WHERE id LIKE :id")
-    suspend fun getDetailsById(id: Int)
+    suspend fun getDetailsById(id: Int): DetailsModel
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: DetailsModel)
 }

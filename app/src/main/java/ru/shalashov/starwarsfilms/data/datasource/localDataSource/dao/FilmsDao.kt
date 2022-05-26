@@ -1,14 +1,14 @@
 package ru.shalashov.starwarsfilms.data.datasource.localDataSource.dao
 
 import androidx.room.*
-import ru.shalashov.starwarsfilms.data.datasource.localDataSource.models.FilmsModel
+import ru.shalashov.starwarsfilms.data.datasource.localDataSource.models.ResultsModel
 
 @Dao
 interface FilmsDao {
 
     @Query("SELECT * FROM films")
-    suspend fun getAllFilms(): List<FilmsModel>
+    suspend fun getAllFilms(): List<ResultsModel>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(entity: FilmsModel)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(entity: ResultsModel)
 }

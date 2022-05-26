@@ -11,8 +11,8 @@ import ru.shalashov.starwarsfilms.domain.entities.Credits
 interface CreditsDao {
 
     @Query("SELECT * FROM credits WHERE id LIKE :id")
-    suspend fun getCredits(id: Int): List<Credits>
+    suspend fun getCredits(id: Int): List<CreditsModel>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity:CreditsModel)
 }

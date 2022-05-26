@@ -1,10 +1,18 @@
 package ru.shalashov.starwarsfilms.data.datasource.localDataSource.models
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ru.shalashov.starwarsfilms.domain.entities.Results
+
+@Entity(tableName = "filmsList")
+data class PopularFilmsModel(
+    @Embedded
+    val results: List<ResultsModel>
+)
 
 @Entity(tableName = "films")
-data class FilmsModel(
+data class ResultsModel(
     @PrimaryKey
     val id: Int,
     val genre_ids: List<Int>,
