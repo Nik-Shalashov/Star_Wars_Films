@@ -22,10 +22,6 @@ fun Genres.toDataModel() = GenresModel(
     name
 )
 
-fun PopularFilmsModel.toDomainModel(resultsModel: ResultsModel) = PopularFilms(
-    listOf(resultsModel.toDomainModel())
-)
-
 fun Results.toDataModel() = ResultsModel(
     id,
     genre_ids,
@@ -33,10 +29,6 @@ fun Results.toDataModel() = ResultsModel(
     vote_average,
     poster_path,
     release_date
-)
-
-fun PopularFilms.toDataModel(results: Results) = PopularFilmsModel(
-    listOf(results.toDataModel())
 )
 
 fun Details.toDataModel(genresModel: List<GenresModel>) = DetailsModel(

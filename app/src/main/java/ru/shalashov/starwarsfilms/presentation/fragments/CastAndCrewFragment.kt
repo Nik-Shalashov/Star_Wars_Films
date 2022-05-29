@@ -10,9 +10,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ru.shalashov.starwarsfilms.data.appState.AppState
 import ru.shalashov.starwarsfilms.databinding.FragmentCastAndCrewBinding
-import ru.shalashov.starwarsfilms.databinding.FragmentDetailsBinding
 import ru.shalashov.starwarsfilms.domain.entities.Credits
-import ru.shalashov.starwarsfilms.domain.entities.Details
 import ru.shalashov.starwarsfilms.domain.entities.Results
 import ru.shalashov.starwarsfilms.presentation.adapters.CreditsAdapter
 import ru.shalashov.starwarsfilms.presentation.viewmodels.DetailsViewModel
