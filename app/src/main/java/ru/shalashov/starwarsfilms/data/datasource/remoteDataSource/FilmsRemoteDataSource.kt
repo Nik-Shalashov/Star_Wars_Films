@@ -23,5 +23,5 @@ class FilmsRemoteDataSource @Inject constructor(
 
     override suspend fun getFilmsDetails(id: Int): Response<Details> = api.getFilmDetails(id, apiKey, language)
 
-    override suspend fun getCrews(id: Int): Response<Credits> = api.getCredits(id, apiKey, language)
+    override suspend fun getCredits(id: Int): Response<Credits> = api.getCredits(id, apiKey, language)
 }

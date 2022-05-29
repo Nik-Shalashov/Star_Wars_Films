@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import ru.shalashov.starwarsfilms.domain.entities.PopularFilms
 import ru.shalashov.starwarsfilms.domain.usecases.GetFilmsListUseCase
-import ru.shalashov.starwarsfilms.presentation.appState.AppState
+import ru.shalashov.starwarsfilms.data.appState.AppState
 import javax.inject.Inject
 
 @HiltViewModel

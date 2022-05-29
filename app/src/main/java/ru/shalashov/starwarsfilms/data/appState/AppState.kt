@@ -1,4 +1,4 @@
-package ru.shalashov.starwarsfilms.presentation.appState
+package ru.shalashov.starwarsfilms.data.appState
 
 sealed class AppState <out T> {
     data class Success<out R>(val content: R): AppState<R>()

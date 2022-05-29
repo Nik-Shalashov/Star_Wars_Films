@@ -4,8 +4,6 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import ru.shalashov.starwarsfilms.domain.entities.Cast
-import ru.shalashov.starwarsfilms.domain.entities.Crew
 
 @Entity(
     tableName = "credits",

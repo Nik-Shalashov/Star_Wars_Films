@@ -4,18 +4,9 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import ru.shalashov.starwarsfilms.domain.entities.Genres
 
 @Entity(
-    tableName = "details"/*,
-    foreignKeys = [
-        ForeignKey(
-            entity = ResultsModel::class,
-            parentColumns = arrayOf("id"),
-            childColumns = arrayOf("id"),
-            onDelete = ForeignKey.CASCADE
-        )
-    ]*/
+    tableName = "details"
 )
 data class DetailsModel(
     @PrimaryKey

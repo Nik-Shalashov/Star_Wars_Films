@@ -17,8 +17,36 @@ fun GenresModel.toDomainModel() = Genres(
     name
 )
 
+fun Genres.toDataModel() = GenresModel(
+    id,
+    name
+)
+
 fun PopularFilmsModel.toDomainModel(resultsModel: ResultsModel) = PopularFilms(
     listOf(resultsModel.toDomainModel())
+)
+
+fun Results.toDataModel() = ResultsModel(
+    id,
+    genre_ids,
+    title,
+    vote_average,
+    poster_path,
+    release_date
+)
+
+fun PopularFilms.toDataModel(results: Results) = PopularFilmsModel(
+    listOf(results.toDataModel())
+)
+
+fun Details.toDataModel(genresModel: List<GenresModel>) = DetailsModel(
+    id,
+    title,
+    genres = genresModel,
+    overview,
+    runtime,
+    vote_average,
+    poster_path
 )
 
 fun DetailsModel.toDomainModel(genres: List<Genres>) = Details(
@@ -35,12 +63,32 @@ fun CastModel.toDomainModel() = Cast(
     name, profile_path, character
 )
 
+fun Cast.toDataModel(id: Int) = CastModel(
+    name,
+    profile_path,
+    character,
+    id
+)
+
 fun CrewModel.toDomainModel() = Crew(
     name, profile_path, job
 )
 
-fun CreditsModel.toDomainModel(castModel: CastModel, crewModel: CrewModel) = Credits(
+fun Crew.toDataModel(id: Int) = CrewModel(
+    name,
+    profile_path,
+    job,
+    id
+)
+
+fun CreditsModel.toDomainModel(cast: List<Cast>, crew: List<Crew>) = Credits(
     id,
-    cast = listOf(castModel.toDomainModel()),
-    crew = listOf(crewModel.toDomainModel())
+    cast = cast,
+    crew = crew
+)
+
+fun Credits.toDataModel(cast: List<CastModel>, crew: List<CrewModel>) = CreditsModel(
+    id,
+    cast,
+    crew
 )

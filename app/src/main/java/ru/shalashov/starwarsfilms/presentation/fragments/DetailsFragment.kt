@@ -11,11 +11,9 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ru.shalashov.starwarsfilms.R
 import ru.shalashov.starwarsfilms.databinding.FragmentDetailsBinding
-import ru.shalashov.starwarsfilms.databinding.FragmentMainBinding
 import ru.shalashov.starwarsfilms.domain.entities.*
 import ru.shalashov.starwarsfilms.presentation.adapters.CreditsAdapter
-import ru.shalashov.starwarsfilms.presentation.adapters.MainAdapter
-import ru.shalashov.starwarsfilms.presentation.appState.AppState
+import ru.shalashov.starwarsfilms.data.appState.AppState
 import ru.shalashov.starwarsfilms.presentation.viewmodels.DetailsViewModel
 
 @AndroidEntryPoint
@@ -39,11 +37,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.detailsLiveData.observe(viewLifecycleOwner) { renderData(it) }
-        viewModel.creditsLiveData.observe(viewLifecycleOwner) { renderDataForCredits(it) }
         val filmID = requireArguments().getParcelable<Results>(BUNDLE_EXTRA)!!.id
-        viewModel.getDetails(filmID)
-        viewModel.getCredits(filmID)
         binding.rvCreditsList.adapter = adapter
         binding.ibBackToFilms.setOnClickListener {
             activity?.supportFragmentManager?.apply {
@@ -52,14 +46,10 @@ class DetailsFragment : Fragment() {
                     .commitAllowingStateLoss()
             }
         }
-        binding.tvViewAll.setOnClickListener {
-            activity?.supportFragmentManager?.apply {
-                beginTransaction()
-                    .add(R.id.container, CastAndCrewFragment())
-                    .addToBackStack("")
-                    .commitAllowingStateLoss()
-            }
-        }
+        viewModel.detailsLiveData.observe(viewLifecycleOwner) { renderData(it) }
+        viewModel.creditsLiveData.observe(viewLifecycleOwner) { renderDataForCredits(it) }
+        viewModel.getDetails(filmID)
+        viewModel.getCredits(filmID)
     }
 
     private fun renderData(appState: AppState<Details>) {
@@ -73,6 +63,14 @@ class DetailsFragment : Fragment() {
                 binding.tvDescription.text = details.overview
                 val genre = details.genres[1].name
                 binding.tvGenreInDescription.text = genre
+                binding.tvViewAll.setOnClickListener {
+                    activity?.supportFragmentManager?.apply {
+                        beginTransaction()
+                            .add(R.id.container, CastAndCrewFragment.newInstance(details.id))
+                            .addToBackStack("")
+                            .commitAllowingStateLoss()
+                    }
+                }
             }
             is AppState.Loading -> {
                 binding.loadingLayout.visibility = View.VISIBLE
@@ -93,6 +91,14 @@ class DetailsFragment : Fragment() {
                 creditsList.addAll(credits.crew)
                 creditsList.addAll(credits.cast)
                 adapter.setCredits(creditsList)
+                binding.rvCreditsList.setOnClickListener {
+                    activity?.supportFragmentManager?.apply {
+                        beginTransaction()
+                            .add(R.id.container, CastAndCrewFragment.newInstance(credits.id))
+                            .addToBackStack("")
+                            .commitAllowingStateLoss()
+                    }
+                }
             }
             is AppState.Loading -> {
                 binding.loadingLayout.visibility = View.VISIBLE

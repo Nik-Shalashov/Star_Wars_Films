@@ -3,7 +3,6 @@ package ru.shalashov.starwarsfilms.data.datasource.localDataSource.models
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ru.shalashov.starwarsfilms.domain.entities.Results
 
 @Entity(tableName = "filmsList")
 data class PopularFilmsModel(
