@@ -9,5 +9,5 @@ interface FilmsDataSource {
 
     suspend fun getFilmsList(): Response<PopularFilms>
     suspend fun getFilmsDetails(id: Int): Response<Details>
-    suspend fun getCrews(id: Int): Response<Credits>
+    suspend fun getCredits(id: Int): Response<Credits>
 }

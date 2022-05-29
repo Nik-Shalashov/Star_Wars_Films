@@ -11,7 +11,7 @@ import ru.shalashov.starwarsfilms.domain.entities.Credits
 import ru.shalashov.starwarsfilms.domain.entities.Details
 import ru.shalashov.starwarsfilms.domain.usecases.GetCrewsUseCase
 import ru.shalashov.starwarsfilms.domain.usecases.GetFilmDetailsUseCase
-import ru.shalashov.starwarsfilms.presentation.appState.AppState
+import ru.shalashov.starwarsfilms.data.appState.AppState
 import javax.inject.Inject
 
 @HiltViewModel

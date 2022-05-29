@@ -12,7 +12,7 @@ import ru.shalashov.starwarsfilms.R
 import ru.shalashov.starwarsfilms.databinding.FragmentMainBinding
 import ru.shalashov.starwarsfilms.domain.entities.PopularFilms
 import ru.shalashov.starwarsfilms.presentation.adapters.MainAdapter
-import ru.shalashov.starwarsfilms.presentation.appState.AppState
+import ru.shalashov.starwarsfilms.data.appState.AppState
 import ru.shalashov.starwarsfilms.presentation.viewmodels.MainViewModel
 
 @AndroidEntryPoint
